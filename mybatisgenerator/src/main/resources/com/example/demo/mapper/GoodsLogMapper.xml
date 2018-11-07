@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.GoodsLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.GoodsLog" >
+    <id column="GL_PK" property="glPk" jdbcType="INTEGER" />
+    <result column="Goods_PK" property="goodsPk" jdbcType="INTEGER" />
+    <result column="Goods_In" property="goodsIn" jdbcType="INTEGER" />
+    <result column="Goods_Out" property="goodsOut" jdbcType="INTEGER" />
+    <result column="Goods_PriceChange" property="goodsPricechange" jdbcType="REAL" />
+    <result column="GL_Time" property="glTime" jdbcType="TIMESTAMP" />
+    <result column="GL_Reserve_1" property="glReserve1" jdbcType="VARCHAR" />
+    <result column="GL_Reserve_2" property="glReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GL_PK, Goods_PK, Goods_In, Goods_Out, Goods_PriceChange, GL_Time, GL_Reserve_1, GL_Reserve_2, 
+    Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_log
+    where GL_PK = #{glPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_log
+    where GL_PK = #{glPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.GoodsLog" >
+    insert into goods_log (GL_PK, Goods_PK, Goods_In, 
+      Goods_Out, Goods_PriceChange, GL_Time, 
+      GL_Reserve_1, GL_Reserve_2, Remark
+      )
+    values (#{glPk,jdbcType=INTEGER}, #{goodsPk,jdbcType=INTEGER}, #{goodsIn,jdbcType=INTEGER}, 
+      #{goodsOut,jdbcType=INTEGER}, #{goodsPricechange,jdbcType=REAL}, #{glTime,jdbcType=TIMESTAMP}, 
+      #{glReserve1,jdbcType=VARCHAR}, #{glReserve2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.GoodsLog" >
+    insert into goods_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="glPk != null" >
+        GL_PK,
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK,
+      </if>
+      <if test="goodsIn != null" >
+        Goods_In,
+      </if>
+      <if test="goodsOut != null" >
+        Goods_Out,
+      </if>
+      <if test="goodsPricechange != null" >
+        Goods_PriceChange,
+      </if>
+      <if test="glTime != null" >
+        GL_Time,
+      </if>
+      <if test="glReserve1 != null" >
+        GL_Reserve_1,
+      </if>
+      <if test="glReserve2 != null" >
+        GL_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="glPk != null" >
+        #{glPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsIn != null" >
+        #{goodsIn,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOut != null" >
+        #{goodsOut,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPricechange != null" >
+        #{goodsPricechange,jdbcType=REAL},
+      </if>
+      <if test="glTime != null" >
+        #{glTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glReserve1 != null" >
+        #{glReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="glReserve2 != null" >
+        #{glReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.GoodsLog" >
+    update goods_log
+    <set >
+      <if test="goodsPk != null" >
+        Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsIn != null" >
+        Goods_In = #{goodsIn,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOut != null" >
+        Goods_Out = #{goodsOut,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPricechange != null" >
+        Goods_PriceChange = #{goodsPricechange,jdbcType=REAL},
+      </if>
+      <if test="glTime != null" >
+        GL_Time = #{glTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glReserve1 != null" >
+        GL_Reserve_1 = #{glReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="glReserve2 != null" >
+        GL_Reserve_2 = #{glReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GL_PK = #{glPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.GoodsLog" >
+    update goods_log
+    set Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      Goods_In = #{goodsIn,jdbcType=INTEGER},
+      Goods_Out = #{goodsOut,jdbcType=INTEGER},
+      Goods_PriceChange = #{goodsPricechange,jdbcType=REAL},
+      GL_Time = #{glTime,jdbcType=TIMESTAMP},
+      GL_Reserve_1 = #{glReserve1,jdbcType=VARCHAR},
+      GL_Reserve_2 = #{glReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where GL_PK = #{glPk,jdbcType=INTEGER}
+  </update>
+</mapper>

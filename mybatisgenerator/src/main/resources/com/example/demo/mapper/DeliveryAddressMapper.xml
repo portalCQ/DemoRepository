@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.DeliveryAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.DeliveryAddress" >
+    <id column="Deliv_PK" property="delivPk" jdbcType="INTEGER" />
+    <result column="Deliv_Cell" property="delivCell" jdbcType="VARCHAR" />
+    <result column="Deliv_Name" property="delivName" jdbcType="VARCHAR" />
+    <result column="Deliv_Address" property="delivAddress" jdbcType="VARCHAR" />
+    <result column="Deliv_Zipcode" property="delivZipcode" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Deliv_PK, Deliv_Cell, Deliv_Name, Deliv_Address, Deliv_Zipcode, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_address
+    where Deliv_PK = #{delivPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from delivery_address
+    where Deliv_PK = #{delivPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.DeliveryAddress" >
+    insert into delivery_address (Deliv_PK, Deliv_Cell, Deliv_Name, 
+      Deliv_Address, Deliv_Zipcode, Remark
+      )
+    values (#{delivPk,jdbcType=INTEGER}, #{delivCell,jdbcType=VARCHAR}, #{delivName,jdbcType=VARCHAR}, 
+      #{delivAddress,jdbcType=VARCHAR}, #{delivZipcode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.DeliveryAddress" >
+    insert into delivery_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="delivPk != null" >
+        Deliv_PK,
+      </if>
+      <if test="delivCell != null" >
+        Deliv_Cell,
+      </if>
+      <if test="delivName != null" >
+        Deliv_Name,
+      </if>
+      <if test="delivAddress != null" >
+        Deliv_Address,
+      </if>
+      <if test="delivZipcode != null" >
+        Deliv_Zipcode,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="delivPk != null" >
+        #{delivPk,jdbcType=INTEGER},
+      </if>
+      <if test="delivCell != null" >
+        #{delivCell,jdbcType=VARCHAR},
+      </if>
+      <if test="delivName != null" >
+        #{delivName,jdbcType=VARCHAR},
+      </if>
+      <if test="delivAddress != null" >
+        #{delivAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="delivZipcode != null" >
+        #{delivZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.DeliveryAddress" >
+    update delivery_address
+    <set >
+      <if test="delivCell != null" >
+        Deliv_Cell = #{delivCell,jdbcType=VARCHAR},
+      </if>
+      <if test="delivName != null" >
+        Deliv_Name = #{delivName,jdbcType=VARCHAR},
+      </if>
+      <if test="delivAddress != null" >
+        Deliv_Address = #{delivAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="delivZipcode != null" >
+        Deliv_Zipcode = #{delivZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Deliv_PK = #{delivPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.DeliveryAddress" >
+    update delivery_address
+    set Deliv_Cell = #{delivCell,jdbcType=VARCHAR},
+      Deliv_Name = #{delivName,jdbcType=VARCHAR},
+      Deliv_Address = #{delivAddress,jdbcType=VARCHAR},
+      Deliv_Zipcode = #{delivZipcode,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Deliv_PK = #{delivPk,jdbcType=INTEGER}
+  </update>
+</mapper>

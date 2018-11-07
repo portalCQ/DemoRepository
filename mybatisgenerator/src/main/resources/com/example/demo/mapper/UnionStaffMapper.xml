@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UnionStaffMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UnionStaff" >
+    <id column="Staff_PK" property="staffPk" jdbcType="INTEGER" />
+    <result column="Union_PK" property="unionPk" jdbcType="INTEGER" />
+    <result column="Staff_Name" property="staffName" jdbcType="VARCHAR" />
+    <result column="Staff_Sex" property="staffSex" jdbcType="INTEGER" />
+    <result column="Staff_Birthday" property="staffBirthday" jdbcType="DATE" />
+    <result column="Staff_Address" property="staffAddress" jdbcType="VARCHAR" />
+    <result column="Staff_Phone" property="staffPhone" jdbcType="VARCHAR" />
+    <result column="Staff_ID" property="staffId" jdbcType="VARCHAR" />
+    <result column="Staff_Email" property="staffEmail" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Staff_PK, Union_PK, Staff_Name, Staff_Sex, Staff_Birthday, Staff_Address, Staff_Phone, 
+    Staff_ID, Staff_Email, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from union_staff
+    where Staff_PK = #{staffPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from union_staff
+    where Staff_PK = #{staffPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UnionStaff" >
+    insert into union_staff (Staff_PK, Union_PK, Staff_Name, 
+      Staff_Sex, Staff_Birthday, Staff_Address, 
+      Staff_Phone, Staff_ID, Staff_Email, 
+      Remark)
+    values (#{staffPk,jdbcType=INTEGER}, #{unionPk,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, 
+      #{staffSex,jdbcType=INTEGER}, #{staffBirthday,jdbcType=DATE}, #{staffAddress,jdbcType=VARCHAR}, 
+      #{staffPhone,jdbcType=VARCHAR}, #{staffId,jdbcType=VARCHAR}, #{staffEmail,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UnionStaff" >
+    insert into union_staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffPk != null" >
+        Staff_PK,
+      </if>
+      <if test="unionPk != null" >
+        Union_PK,
+      </if>
+      <if test="staffName != null" >
+        Staff_Name,
+      </if>
+      <if test="staffSex != null" >
+        Staff_Sex,
+      </if>
+      <if test="staffBirthday != null" >
+        Staff_Birthday,
+      </if>
+      <if test="staffAddress != null" >
+        Staff_Address,
+      </if>
+      <if test="staffPhone != null" >
+        Staff_Phone,
+      </if>
+      <if test="staffId != null" >
+        Staff_ID,
+      </if>
+      <if test="staffEmail != null" >
+        Staff_Email,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffPk != null" >
+        #{staffPk,jdbcType=INTEGER},
+      </if>
+      <if test="unionPk != null" >
+        #{unionPk,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffSex != null" >
+        #{staffSex,jdbcType=INTEGER},
+      </if>
+      <if test="staffBirthday != null" >
+        #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffAddress != null" >
+        #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null" >
+        #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null" >
+        #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UnionStaff" >
+    update union_staff
+    <set >
+      <if test="unionPk != null" >
+        Union_PK = #{unionPk,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null" >
+        Staff_Name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffSex != null" >
+        Staff_Sex = #{staffSex,jdbcType=INTEGER},
+      </if>
+      <if test="staffBirthday != null" >
+        Staff_Birthday = #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffAddress != null" >
+        Staff_Address = #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null" >
+        Staff_Phone = #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        Staff_ID = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null" >
+        Staff_Email = #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Staff_PK = #{staffPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UnionStaff" >
+    update union_staff
+    set Union_PK = #{unionPk,jdbcType=INTEGER},
+      Staff_Name = #{staffName,jdbcType=VARCHAR},
+      Staff_Sex = #{staffSex,jdbcType=INTEGER},
+      Staff_Birthday = #{staffBirthday,jdbcType=DATE},
+      Staff_Address = #{staffAddress,jdbcType=VARCHAR},
+      Staff_Phone = #{staffPhone,jdbcType=VARCHAR},
+      Staff_ID = #{staffId,jdbcType=VARCHAR},
+      Staff_Email = #{staffEmail,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Staff_PK = #{staffPk,jdbcType=INTEGER}
+  </update>
+</mapper>

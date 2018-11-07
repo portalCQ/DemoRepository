@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UnionGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UnionGoodsInfo" >
+    <id column="Union_PK" property="unionPk" jdbcType="INTEGER" />
+    <id column="Goods_PK" property="goodsPk" jdbcType="INTEGER" />
+    <result column="Have_Area" property="haveArea" jdbcType="INTEGER" />
+    <result column="Have_Num" property="haveNum" jdbcType="INTEGER" />
+    <result column="Have_Yield" property="haveYield" jdbcType="VARCHAR" />
+    <result column="Have_Time" property="haveTime" jdbcType="VARCHAR" />
+    <result column="Have_Price" property="havePrice" jdbcType="VARCHAR" />
+    <result column="Union_Goods_Mark" property="unionGoodsMark" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Union_PK, Goods_PK, Have_Area, Have_Num, Have_Yield, Have_Time, Have_Price, Union_Goods_Mark, 
+    Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.demo.entity.UnionGoodsInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from union_goods_info
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+      and Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.demo.entity.UnionGoodsInfoKey" >
+    delete from union_goods_info
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+      and Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UnionGoodsInfo" >
+    insert into union_goods_info (Union_PK, Goods_PK, Have_Area, 
+      Have_Num, Have_Yield, Have_Time, 
+      Have_Price, Union_Goods_Mark, Remark
+      )
+    values (#{unionPk,jdbcType=INTEGER}, #{goodsPk,jdbcType=INTEGER}, #{haveArea,jdbcType=INTEGER}, 
+      #{haveNum,jdbcType=INTEGER}, #{haveYield,jdbcType=VARCHAR}, #{haveTime,jdbcType=VARCHAR}, 
+      #{havePrice,jdbcType=VARCHAR}, #{unionGoodsMark,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UnionGoodsInfo" >
+    insert into union_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionPk != null" >
+        Union_PK,
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK,
+      </if>
+      <if test="haveArea != null" >
+        Have_Area,
+      </if>
+      <if test="haveNum != null" >
+        Have_Num,
+      </if>
+      <if test="haveYield != null" >
+        Have_Yield,
+      </if>
+      <if test="haveTime != null" >
+        Have_Time,
+      </if>
+      <if test="havePrice != null" >
+        Have_Price,
+      </if>
+      <if test="unionGoodsMark != null" >
+        Union_Goods_Mark,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionPk != null" >
+        #{unionPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="haveArea != null" >
+        #{haveArea,jdbcType=INTEGER},
+      </if>
+      <if test="haveNum != null" >
+        #{haveNum,jdbcType=INTEGER},
+      </if>
+      <if test="haveYield != null" >
+        #{haveYield,jdbcType=VARCHAR},
+      </if>
+      <if test="haveTime != null" >
+        #{haveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="havePrice != null" >
+        #{havePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="unionGoodsMark != null" >
+        #{unionGoodsMark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UnionGoodsInfo" >
+    update union_goods_info
+    <set >
+      <if test="haveArea != null" >
+        Have_Area = #{haveArea,jdbcType=INTEGER},
+      </if>
+      <if test="haveNum != null" >
+        Have_Num = #{haveNum,jdbcType=INTEGER},
+      </if>
+      <if test="haveYield != null" >
+        Have_Yield = #{haveYield,jdbcType=VARCHAR},
+      </if>
+      <if test="haveTime != null" >
+        Have_Time = #{haveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="havePrice != null" >
+        Have_Price = #{havePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="unionGoodsMark != null" >
+        Union_Goods_Mark = #{unionGoodsMark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+      and Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UnionGoodsInfo" >
+    update union_goods_info
+    set Have_Area = #{haveArea,jdbcType=INTEGER},
+      Have_Num = #{haveNum,jdbcType=INTEGER},
+      Have_Yield = #{haveYield,jdbcType=VARCHAR},
+      Have_Time = #{haveTime,jdbcType=VARCHAR},
+      Have_Price = #{havePrice,jdbcType=VARCHAR},
+      Union_Goods_Mark = #{unionGoodsMark,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+      and Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </update>
+</mapper>

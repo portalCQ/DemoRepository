@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.SignInLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.SignInLog" >
+    <id column="SignIn_PK" property="signinPk" jdbcType="INTEGER" />
+    <result column="SignIn_IsAdmin" property="signinIsadmin" jdbcType="BIT" />
+    <result column="User_Pk" property="userPk" jdbcType="INTEGER" />
+    <result column="Admin_Pk" property="adminPk" jdbcType="INTEGER" />
+    <result column="SignIn_Time" property="signinTime" jdbcType="TIMESTAMP" />
+    <result column="SignIn_Reserve_1" property="signinReserve1" jdbcType="VARCHAR" />
+    <result column="SignIn_Reserve_2" property="signinReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SignIn_PK, SignIn_IsAdmin, User_Pk, Admin_Pk, SignIn_Time, SignIn_Reserve_1, SignIn_Reserve_2, 
+    Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sign_in_log
+    where SignIn_PK = #{signinPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sign_in_log
+    where SignIn_PK = #{signinPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.SignInLog" >
+    insert into sign_in_log (SignIn_PK, SignIn_IsAdmin, User_Pk, 
+      Admin_Pk, SignIn_Time, SignIn_Reserve_1, 
+      SignIn_Reserve_2, Remark)
+    values (#{signinPk,jdbcType=INTEGER}, #{signinIsadmin,jdbcType=BIT}, #{userPk,jdbcType=INTEGER}, 
+      #{adminPk,jdbcType=INTEGER}, #{signinTime,jdbcType=TIMESTAMP}, #{signinReserve1,jdbcType=VARCHAR}, 
+      #{signinReserve2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.SignInLog" >
+    insert into sign_in_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="signinPk != null" >
+        SignIn_PK,
+      </if>
+      <if test="signinIsadmin != null" >
+        SignIn_IsAdmin,
+      </if>
+      <if test="userPk != null" >
+        User_Pk,
+      </if>
+      <if test="adminPk != null" >
+        Admin_Pk,
+      </if>
+      <if test="signinTime != null" >
+        SignIn_Time,
+      </if>
+      <if test="signinReserve1 != null" >
+        SignIn_Reserve_1,
+      </if>
+      <if test="signinReserve2 != null" >
+        SignIn_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="signinPk != null" >
+        #{signinPk,jdbcType=INTEGER},
+      </if>
+      <if test="signinIsadmin != null" >
+        #{signinIsadmin,jdbcType=BIT},
+      </if>
+      <if test="userPk != null" >
+        #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="adminPk != null" >
+        #{adminPk,jdbcType=INTEGER},
+      </if>
+      <if test="signinTime != null" >
+        #{signinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signinReserve1 != null" >
+        #{signinReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="signinReserve2 != null" >
+        #{signinReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.SignInLog" >
+    update sign_in_log
+    <set >
+      <if test="signinIsadmin != null" >
+        SignIn_IsAdmin = #{signinIsadmin,jdbcType=BIT},
+      </if>
+      <if test="userPk != null" >
+        User_Pk = #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="adminPk != null" >
+        Admin_Pk = #{adminPk,jdbcType=INTEGER},
+      </if>
+      <if test="signinTime != null" >
+        SignIn_Time = #{signinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signinReserve1 != null" >
+        SignIn_Reserve_1 = #{signinReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="signinReserve2 != null" >
+        SignIn_Reserve_2 = #{signinReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SignIn_PK = #{signinPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.SignInLog" >
+    update sign_in_log
+    set SignIn_IsAdmin = #{signinIsadmin,jdbcType=BIT},
+      User_Pk = #{userPk,jdbcType=INTEGER},
+      Admin_Pk = #{adminPk,jdbcType=INTEGER},
+      SignIn_Time = #{signinTime,jdbcType=TIMESTAMP},
+      SignIn_Reserve_1 = #{signinReserve1,jdbcType=VARCHAR},
+      SignIn_Reserve_2 = #{signinReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where SignIn_PK = #{signinPk,jdbcType=INTEGER}
+  </update>
+</mapper>

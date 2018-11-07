@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UnionNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UnionNews" >
+    <id column="News_PK" property="newsPk" jdbcType="INTEGER" />
+    <result column="News_Title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="News_Time" property="newsTime" jdbcType="TIMESTAMP" />
+    <result column="News_Mark" property="newsMark" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.entity.UnionNews" extends="BaseResultMap" >
+    <result column="News_Text" property="newsText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    News_PK, News_Title, News_Time, News_Mark, Remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    News_Text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from union_news
+    where News_PK = #{newsPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from union_news
+    where News_PK = #{newsPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UnionNews" >
+    insert into union_news (News_PK, News_Title, News_Time, 
+      News_Mark, Remark, News_Text
+      )
+    values (#{newsPk,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsTime,jdbcType=TIMESTAMP}, 
+      #{newsMark,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{newsText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UnionNews" >
+    insert into union_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsPk != null" >
+        News_PK,
+      </if>
+      <if test="newsTitle != null" >
+        News_Title,
+      </if>
+      <if test="newsTime != null" >
+        News_Time,
+      </if>
+      <if test="newsMark != null" >
+        News_Mark,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="newsText != null" >
+        News_Text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsPk != null" >
+        #{newsPk,jdbcType=INTEGER},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsMark != null" >
+        #{newsMark,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="newsText != null" >
+        #{newsText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UnionNews" >
+    update union_news
+    <set >
+      <if test="newsTitle != null" >
+        News_Title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        News_Time = #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsMark != null" >
+        News_Mark = #{newsMark,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="newsText != null" >
+        News_Text = #{newsText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where News_PK = #{newsPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.entity.UnionNews" >
+    update union_news
+    set News_Title = #{newsTitle,jdbcType=VARCHAR},
+      News_Time = #{newsTime,jdbcType=TIMESTAMP},
+      News_Mark = #{newsMark,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      News_Text = #{newsText,jdbcType=LONGVARCHAR}
+    where News_PK = #{newsPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UnionNews" >
+    update union_news
+    set News_Title = #{newsTitle,jdbcType=VARCHAR},
+      News_Time = #{newsTime,jdbcType=TIMESTAMP},
+      News_Mark = #{newsMark,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where News_PK = #{newsPk,jdbcType=INTEGER}
+  </update>
+</mapper>

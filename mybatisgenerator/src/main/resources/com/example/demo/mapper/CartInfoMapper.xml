@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CartInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.CartInfo" >
+    <id column="Cart_PK" property="cartPk" jdbcType="INTEGER" />
+    <result column="Goods_List" property="goodsList" jdbcType="VARCHAR" />
+    <result column="Goods_Num" property="goodsNum" jdbcType="VARCHAR" />
+    <result column="Cart_Reserve_1" property="cartReserve1" jdbcType="CHAR" />
+    <result column="Cart_Reserve_2" property="cartReserve2" jdbcType="CHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Cart_PK, Goods_List, Goods_Num, Cart_Reserve_1, Cart_Reserve_2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart_info
+    where Cart_PK = #{cartPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cart_info
+    where Cart_PK = #{cartPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.CartInfo" >
+    insert into cart_info (Cart_PK, Goods_List, Goods_Num, 
+      Cart_Reserve_1, Cart_Reserve_2, Remark
+      )
+    values (#{cartPk,jdbcType=INTEGER}, #{goodsList,jdbcType=VARCHAR}, #{goodsNum,jdbcType=VARCHAR}, 
+      #{cartReserve1,jdbcType=CHAR}, #{cartReserve2,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.CartInfo" >
+    insert into cart_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartPk != null" >
+        Cart_PK,
+      </if>
+      <if test="goodsList != null" >
+        Goods_List,
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num,
+      </if>
+      <if test="cartReserve1 != null" >
+        Cart_Reserve_1,
+      </if>
+      <if test="cartReserve2 != null" >
+        Cart_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartPk != null" >
+        #{cartPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsList != null" >
+        #{goodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cartReserve1 != null" >
+        #{cartReserve1,jdbcType=CHAR},
+      </if>
+      <if test="cartReserve2 != null" >
+        #{cartReserve2,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.CartInfo" >
+    update cart_info
+    <set >
+      <if test="goodsList != null" >
+        Goods_List = #{goodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num = #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cartReserve1 != null" >
+        Cart_Reserve_1 = #{cartReserve1,jdbcType=CHAR},
+      </if>
+      <if test="cartReserve2 != null" >
+        Cart_Reserve_2 = #{cartReserve2,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Cart_PK = #{cartPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CartInfo" >
+    update cart_info
+    set Goods_List = #{goodsList,jdbcType=VARCHAR},
+      Goods_Num = #{goodsNum,jdbcType=VARCHAR},
+      Cart_Reserve_1 = #{cartReserve1,jdbcType=CHAR},
+      Cart_Reserve_2 = #{cartReserve2,jdbcType=CHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Cart_PK = #{cartPk,jdbcType=INTEGER}
+  </update>
+</mapper>

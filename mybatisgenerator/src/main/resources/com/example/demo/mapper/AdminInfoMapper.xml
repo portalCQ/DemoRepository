@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.AdminInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.AdminInfo" >
+    <id column="Admin_PK" property="adminPk" jdbcType="INTEGER" />
+    <result column="Admin_Password" property="adminPassword" jdbcType="VARCHAR" />
+    <result column="Admin_Name" property="adminName" jdbcType="VARCHAR" />
+    <result column="Admin_Cell" property="adminCell" jdbcType="VARCHAR" />
+    <result column="Admin_email" property="adminEmail" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Admin_PK, Admin_Password, Admin_Name, Admin_Cell, Admin_email, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_info
+    where Admin_PK = #{adminPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin_info
+    where Admin_PK = #{adminPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.AdminInfo" >
+    insert into admin_info (Admin_PK, Admin_Password, Admin_Name, 
+      Admin_Cell, Admin_email, Remark
+      )
+    values (#{adminPk,jdbcType=INTEGER}, #{adminPassword,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, 
+      #{adminCell,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.AdminInfo" >
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminPk != null" >
+        Admin_PK,
+      </if>
+      <if test="adminPassword != null" >
+        Admin_Password,
+      </if>
+      <if test="adminName != null" >
+        Admin_Name,
+      </if>
+      <if test="adminCell != null" >
+        Admin_Cell,
+      </if>
+      <if test="adminEmail != null" >
+        Admin_email,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminPk != null" >
+        #{adminPk,jdbcType=INTEGER},
+      </if>
+      <if test="adminPassword != null" >
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCell != null" >
+        #{adminCell,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null" >
+        #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.AdminInfo" >
+    update admin_info
+    <set >
+      <if test="adminPassword != null" >
+        Admin_Password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        Admin_Name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCell != null" >
+        Admin_Cell = #{adminCell,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null" >
+        Admin_email = #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Admin_PK = #{adminPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.AdminInfo" >
+    update admin_info
+    set Admin_Password = #{adminPassword,jdbcType=VARCHAR},
+      Admin_Name = #{adminName,jdbcType=VARCHAR},
+      Admin_Cell = #{adminCell,jdbcType=VARCHAR},
+      Admin_email = #{adminEmail,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Admin_PK = #{adminPk,jdbcType=INTEGER}
+  </update>
+</mapper>

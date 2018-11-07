@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UserInfo" >
+    <id column="User_PK" property="userPk" jdbcType="INTEGER" />
+    <result column="User_Password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="User_Name" property="userName" jdbcType="VARCHAR" />
+    <result column="User_Cell" property="userCell" jdbcType="VARCHAR" />
+    <result column="User_Email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="User_Sex" property="userSex" jdbcType="INTEGER" />
+    <result column="User_RegTime" property="userRegtime" jdbcType="TIMESTAMP" />
+    <result column="User_Realname" property="userRealname" jdbcType="VARCHAR" />
+    <result column="User_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="User_Mark" property="userMark" jdbcType="VARCHAR" />
+    <result column="User_Reserve_1" property="userReserve1" jdbcType="VARCHAR" />
+    <result column="User_Reserve_2" property="userReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    User_PK, User_Password, User_Name, User_Cell, User_Email, User_Sex, User_RegTime, 
+    User_Realname, User_ID, User_Mark, User_Reserve_1, User_Reserve_2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where User_PK = #{userPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where User_PK = #{userPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UserInfo" >
+    insert into user_info (User_PK, User_Password, User_Name, 
+      User_Cell, User_Email, User_Sex, 
+      User_RegTime, User_Realname, User_ID, 
+      User_Mark, User_Reserve_1, User_Reserve_2, 
+      Remark)
+    values (#{userPk,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userCell,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, 
+      #{userRegtime,jdbcType=TIMESTAMP}, #{userRealname,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{userMark,jdbcType=VARCHAR}, #{userReserve1,jdbcType=VARCHAR}, #{userReserve2,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userPk != null" >
+        User_PK,
+      </if>
+      <if test="userPassword != null" >
+        User_Password,
+      </if>
+      <if test="userName != null" >
+        User_Name,
+      </if>
+      <if test="userCell != null" >
+        User_Cell,
+      </if>
+      <if test="userEmail != null" >
+        User_Email,
+      </if>
+      <if test="userSex != null" >
+        User_Sex,
+      </if>
+      <if test="userRegtime != null" >
+        User_RegTime,
+      </if>
+      <if test="userRealname != null" >
+        User_Realname,
+      </if>
+      <if test="userId != null" >
+        User_ID,
+      </if>
+      <if test="userMark != null" >
+        User_Mark,
+      </if>
+      <if test="userReserve1 != null" >
+        User_Reserve_1,
+      </if>
+      <if test="userReserve2 != null" >
+        User_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userPk != null" >
+        #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCell != null" >
+        #{userCell,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userRegtime != null" >
+        #{userRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userRealname != null" >
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userMark != null" >
+        #{userMark,jdbcType=VARCHAR},
+      </if>
+      <if test="userReserve1 != null" >
+        #{userReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="userReserve2 != null" >
+        #{userReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UserInfo" >
+    update user_info
+    <set >
+      <if test="userPassword != null" >
+        User_Password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        User_Name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCell != null" >
+        User_Cell = #{userCell,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        User_Email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        User_Sex = #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userRegtime != null" >
+        User_RegTime = #{userRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userRealname != null" >
+        User_Realname = #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        User_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userMark != null" >
+        User_Mark = #{userMark,jdbcType=VARCHAR},
+      </if>
+      <if test="userReserve1 != null" >
+        User_Reserve_1 = #{userReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="userReserve2 != null" >
+        User_Reserve_2 = #{userReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where User_PK = #{userPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UserInfo" >
+    update user_info
+    set User_Password = #{userPassword,jdbcType=VARCHAR},
+      User_Name = #{userName,jdbcType=VARCHAR},
+      User_Cell = #{userCell,jdbcType=VARCHAR},
+      User_Email = #{userEmail,jdbcType=VARCHAR},
+      User_Sex = #{userSex,jdbcType=INTEGER},
+      User_RegTime = #{userRegtime,jdbcType=TIMESTAMP},
+      User_Realname = #{userRealname,jdbcType=VARCHAR},
+      User_ID = #{userId,jdbcType=VARCHAR},
+      User_Mark = #{userMark,jdbcType=VARCHAR},
+      User_Reserve_1 = #{userReserve1,jdbcType=VARCHAR},
+      User_Reserve_2 = #{userReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where User_PK = #{userPk,jdbcType=INTEGER}
+  </update>
+</mapper>

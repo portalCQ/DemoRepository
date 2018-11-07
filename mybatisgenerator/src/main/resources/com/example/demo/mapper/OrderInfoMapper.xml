@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.OrderInfo" >
+    <id column="Order_PK" property="orderPk" jdbcType="INTEGER" />
+    <result column="User_PK" property="userPk" jdbcType="INTEGER" />
+    <result column="Order_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="Order_No" property="orderNo" jdbcType="VARCHAR" />
+    <result column="Goods_List" property="goodsList" jdbcType="VARCHAR" />
+    <result column="Goods_Num" property="goodsNum" jdbcType="VARCHAR" />
+    <result column="Goods_Prices" property="goodsPrices" jdbcType="VARCHAR" />
+    <result column="Order_Time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="Order_IsPay" property="orderIspay" jdbcType="BIT" />
+    <result column="Order_PayTime" property="orderPaytime" jdbcType="TIMESTAMP" />
+    <result column="Order_PayPrice" property="orderPayprice" jdbcType="REAL" />
+    <result column="Order_State" property="orderState" jdbcType="INTEGER" />
+    <result column="Order_TrackNum" property="orderTracknum" jdbcType="VARCHAR" />
+    <result column="Order_Company" property="orderCompany" jdbcType="VARCHAR" />
+    <result column="Order_Website" property="orderWebsite" jdbcType="VARCHAR" />
+    <result column="Order_Aftersale" property="orderAftersale" jdbcType="INTEGER" />
+    <result column="Order_Reserve_1" property="orderReserve1" jdbcType="VARCHAR" />
+    <result column="Order_Reserve_2" property="orderReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Order_PK, User_PK, Order_ID, Order_No, Goods_List, Goods_Num, Goods_Prices, Order_Time, 
+    Order_IsPay, Order_PayTime, Order_PayPrice, Order_State, Order_TrackNum, Order_Company, 
+    Order_Website, Order_Aftersale, Order_Reserve_1, Order_Reserve_2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where Order_PK = #{orderPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_info
+    where Order_PK = #{orderPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.OrderInfo" >
+    insert into order_info (Order_PK, User_PK, Order_ID, 
+      Order_No, Goods_List, Goods_Num, 
+      Goods_Prices, Order_Time, Order_IsPay, 
+      Order_PayTime, Order_PayPrice, Order_State, 
+      Order_TrackNum, Order_Company, Order_Website, 
+      Order_Aftersale, Order_Reserve_1, Order_Reserve_2, 
+      Remark)
+    values (#{orderPk,jdbcType=INTEGER}, #{userPk,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{goodsList,jdbcType=VARCHAR}, #{goodsNum,jdbcType=VARCHAR}, 
+      #{goodsPrices,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{orderIspay,jdbcType=BIT}, 
+      #{orderPaytime,jdbcType=TIMESTAMP}, #{orderPayprice,jdbcType=REAL}, #{orderState,jdbcType=INTEGER}, 
+      #{orderTracknum,jdbcType=VARCHAR}, #{orderCompany,jdbcType=VARCHAR}, #{orderWebsite,jdbcType=VARCHAR}, 
+      #{orderAftersale,jdbcType=INTEGER}, #{orderReserve1,jdbcType=VARCHAR}, #{orderReserve2,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderPk != null" >
+        Order_PK,
+      </if>
+      <if test="userPk != null" >
+        User_PK,
+      </if>
+      <if test="orderId != null" >
+        Order_ID,
+      </if>
+      <if test="orderNo != null" >
+        Order_No,
+      </if>
+      <if test="goodsList != null" >
+        Goods_List,
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num,
+      </if>
+      <if test="goodsPrices != null" >
+        Goods_Prices,
+      </if>
+      <if test="orderTime != null" >
+        Order_Time,
+      </if>
+      <if test="orderIspay != null" >
+        Order_IsPay,
+      </if>
+      <if test="orderPaytime != null" >
+        Order_PayTime,
+      </if>
+      <if test="orderPayprice != null" >
+        Order_PayPrice,
+      </if>
+      <if test="orderState != null" >
+        Order_State,
+      </if>
+      <if test="orderTracknum != null" >
+        Order_TrackNum,
+      </if>
+      <if test="orderCompany != null" >
+        Order_Company,
+      </if>
+      <if test="orderWebsite != null" >
+        Order_Website,
+      </if>
+      <if test="orderAftersale != null" >
+        Order_Aftersale,
+      </if>
+      <if test="orderReserve1 != null" >
+        Order_Reserve_1,
+      </if>
+      <if test="orderReserve2 != null" >
+        Order_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderPk != null" >
+        #{orderPk,jdbcType=INTEGER},
+      </if>
+      <if test="userPk != null" >
+        #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsList != null" >
+        #{goodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrices != null" >
+        #{goodsPrices,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIspay != null" >
+        #{orderIspay,jdbcType=BIT},
+      </if>
+      <if test="orderPaytime != null" >
+        #{orderPaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayprice != null" >
+        #{orderPayprice,jdbcType=REAL},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderTracknum != null" >
+        #{orderTracknum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCompany != null" >
+        #{orderCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWebsite != null" >
+        #{orderWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAftersale != null" >
+        #{orderAftersale,jdbcType=INTEGER},
+      </if>
+      <if test="orderReserve1 != null" >
+        #{orderReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReserve2 != null" >
+        #{orderReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.OrderInfo" >
+    update order_info
+    <set >
+      <if test="userPk != null" >
+        User_PK = #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        Order_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        Order_No = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsList != null" >
+        Goods_List = #{goodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num = #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrices != null" >
+        Goods_Prices = #{goodsPrices,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        Order_Time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIspay != null" >
+        Order_IsPay = #{orderIspay,jdbcType=BIT},
+      </if>
+      <if test="orderPaytime != null" >
+        Order_PayTime = #{orderPaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayprice != null" >
+        Order_PayPrice = #{orderPayprice,jdbcType=REAL},
+      </if>
+      <if test="orderState != null" >
+        Order_State = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderTracknum != null" >
+        Order_TrackNum = #{orderTracknum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCompany != null" >
+        Order_Company = #{orderCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWebsite != null" >
+        Order_Website = #{orderWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAftersale != null" >
+        Order_Aftersale = #{orderAftersale,jdbcType=INTEGER},
+      </if>
+      <if test="orderReserve1 != null" >
+        Order_Reserve_1 = #{orderReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReserve2 != null" >
+        Order_Reserve_2 = #{orderReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Order_PK = #{orderPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.OrderInfo" >
+    update order_info
+    set User_PK = #{userPk,jdbcType=INTEGER},
+      Order_ID = #{orderId,jdbcType=VARCHAR},
+      Order_No = #{orderNo,jdbcType=VARCHAR},
+      Goods_List = #{goodsList,jdbcType=VARCHAR},
+      Goods_Num = #{goodsNum,jdbcType=VARCHAR},
+      Goods_Prices = #{goodsPrices,jdbcType=VARCHAR},
+      Order_Time = #{orderTime,jdbcType=TIMESTAMP},
+      Order_IsPay = #{orderIspay,jdbcType=BIT},
+      Order_PayTime = #{orderPaytime,jdbcType=TIMESTAMP},
+      Order_PayPrice = #{orderPayprice,jdbcType=REAL},
+      Order_State = #{orderState,jdbcType=INTEGER},
+      Order_TrackNum = #{orderTracknum,jdbcType=VARCHAR},
+      Order_Company = #{orderCompany,jdbcType=VARCHAR},
+      Order_Website = #{orderWebsite,jdbcType=VARCHAR},
+      Order_Aftersale = #{orderAftersale,jdbcType=INTEGER},
+      Order_Reserve_1 = #{orderReserve1,jdbcType=VARCHAR},
+      Order_Reserve_2 = #{orderReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Order_PK = #{orderPk,jdbcType=INTEGER}
+  </update>
+</mapper>

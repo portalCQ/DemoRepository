@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.GoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.GoodsInfo" >
+    <id column="Goods_PK" property="goodsPk" jdbcType="INTEGER" />
+    <result column="Goods_Name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="Goods_Type" property="goodsType" jdbcType="INTEGER" />
+    <result column="Goods_Num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="Goods_Price" property="goodsPrice" jdbcType="REAL" />
+    <result column="Goods_Mark" property="goodsMark" jdbcType="VARCHAR" />
+    <result column="Goods_Show" property="goodsShow" jdbcType="VARCHAR" />
+    <result column="Goods_Picture" property="goodsPicture" jdbcType="VARCHAR" />
+    <result column="Goods_Season" property="goodsSeason" jdbcType="INTEGER" />
+    <result column="Goods_Blossom" property="goodsBlossom" jdbcType="VARCHAR" />
+    <result column="Goods_Fruit" property="goodsFruit" jdbcType="VARCHAR" />
+    <result column="Goods_Mature" property="goodsMature" jdbcType="VARCHAR" />
+    <result column="Goods_Expiration" property="goodsExpiration" jdbcType="VARCHAR" />
+    <result column="Goods_Reserve_1" property="goodsReserve1" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.entity.GoodsInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="Goods_Reserve_2" property="goodsReserve2" jdbcType="LONGVARCHAR" />
+    <result column="Remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Goods_PK, Goods_Name, Goods_Type, Goods_Num, Goods_Price, Goods_Mark, Goods_Show, 
+    Goods_Picture, Goods_Season, Goods_Blossom, Goods_Fruit, Goods_Mature, Goods_Expiration, 
+    Goods_Reserve_1
+  </sql>
+  <sql id="Blob_Column_List" >
+    Goods_Reserve_2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_info
+    where Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_info
+    where Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.GoodsInfoWithBLOBs" >
+    insert into goods_info (Goods_PK, Goods_Name, Goods_Type, 
+      Goods_Num, Goods_Price, Goods_Mark, 
+      Goods_Show, Goods_Picture, Goods_Season, 
+      Goods_Blossom, Goods_Fruit, Goods_Mature, 
+      Goods_Expiration, Goods_Reserve_1, Goods_Reserve_2, 
+      Remark)
+    values (#{goodsPk,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=INTEGER}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=REAL}, #{goodsMark,jdbcType=VARCHAR}, 
+      #{goodsShow,jdbcType=VARCHAR}, #{goodsPicture,jdbcType=VARCHAR}, #{goodsSeason,jdbcType=INTEGER}, 
+      #{goodsBlossom,jdbcType=VARCHAR}, #{goodsFruit,jdbcType=VARCHAR}, #{goodsMature,jdbcType=VARCHAR}, 
+      #{goodsExpiration,jdbcType=VARCHAR}, #{goodsReserve1,jdbcType=VARCHAR}, #{goodsReserve2,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.GoodsInfoWithBLOBs" >
+    insert into goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsPk != null" >
+        Goods_PK,
+      </if>
+      <if test="goodsName != null" >
+        Goods_Name,
+      </if>
+      <if test="goodsType != null" >
+        Goods_Type,
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num,
+      </if>
+      <if test="goodsPrice != null" >
+        Goods_Price,
+      </if>
+      <if test="goodsMark != null" >
+        Goods_Mark,
+      </if>
+      <if test="goodsShow != null" >
+        Goods_Show,
+      </if>
+      <if test="goodsPicture != null" >
+        Goods_Picture,
+      </if>
+      <if test="goodsSeason != null" >
+        Goods_Season,
+      </if>
+      <if test="goodsBlossom != null" >
+        Goods_Blossom,
+      </if>
+      <if test="goodsFruit != null" >
+        Goods_Fruit,
+      </if>
+      <if test="goodsMature != null" >
+        Goods_Mature,
+      </if>
+      <if test="goodsExpiration != null" >
+        Goods_Expiration,
+      </if>
+      <if test="goodsReserve1 != null" >
+        Goods_Reserve_1,
+      </if>
+      <if test="goodsReserve2 != null" >
+        Goods_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsPk != null" >
+        #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsMark != null" >
+        #{goodsMark,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsShow != null" >
+        #{goodsShow,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPicture != null" >
+        #{goodsPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSeason != null" >
+        #{goodsSeason,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBlossom != null" >
+        #{goodsBlossom,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsFruit != null" >
+        #{goodsFruit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMature != null" >
+        #{goodsMature,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsExpiration != null" >
+        #{goodsExpiration,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReserve1 != null" >
+        #{goodsReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReserve2 != null" >
+        #{goodsReserve2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.GoodsInfoWithBLOBs" >
+    update goods_info
+    <set >
+      <if test="goodsName != null" >
+        Goods_Name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        Goods_Type = #{goodsType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        Goods_Num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        Goods_Price = #{goodsPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsMark != null" >
+        Goods_Mark = #{goodsMark,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsShow != null" >
+        Goods_Show = #{goodsShow,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPicture != null" >
+        Goods_Picture = #{goodsPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSeason != null" >
+        Goods_Season = #{goodsSeason,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBlossom != null" >
+        Goods_Blossom = #{goodsBlossom,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsFruit != null" >
+        Goods_Fruit = #{goodsFruit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMature != null" >
+        Goods_Mature = #{goodsMature,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsExpiration != null" >
+        Goods_Expiration = #{goodsExpiration,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReserve1 != null" >
+        Goods_Reserve_1 = #{goodsReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReserve2 != null" >
+        Goods_Reserve_2 = #{goodsReserve2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.entity.GoodsInfoWithBLOBs" >
+    update goods_info
+    set Goods_Name = #{goodsName,jdbcType=VARCHAR},
+      Goods_Type = #{goodsType,jdbcType=INTEGER},
+      Goods_Num = #{goodsNum,jdbcType=INTEGER},
+      Goods_Price = #{goodsPrice,jdbcType=REAL},
+      Goods_Mark = #{goodsMark,jdbcType=VARCHAR},
+      Goods_Show = #{goodsShow,jdbcType=VARCHAR},
+      Goods_Picture = #{goodsPicture,jdbcType=VARCHAR},
+      Goods_Season = #{goodsSeason,jdbcType=INTEGER},
+      Goods_Blossom = #{goodsBlossom,jdbcType=VARCHAR},
+      Goods_Fruit = #{goodsFruit,jdbcType=VARCHAR},
+      Goods_Mature = #{goodsMature,jdbcType=VARCHAR},
+      Goods_Expiration = #{goodsExpiration,jdbcType=VARCHAR},
+      Goods_Reserve_1 = #{goodsReserve1,jdbcType=VARCHAR},
+      Goods_Reserve_2 = #{goodsReserve2,jdbcType=LONGVARCHAR},
+      Remark = #{remark,jdbcType=LONGVARCHAR}
+    where Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.GoodsInfo" >
+    update goods_info
+    set Goods_Name = #{goodsName,jdbcType=VARCHAR},
+      Goods_Type = #{goodsType,jdbcType=INTEGER},
+      Goods_Num = #{goodsNum,jdbcType=INTEGER},
+      Goods_Price = #{goodsPrice,jdbcType=REAL},
+      Goods_Mark = #{goodsMark,jdbcType=VARCHAR},
+      Goods_Show = #{goodsShow,jdbcType=VARCHAR},
+      Goods_Picture = #{goodsPicture,jdbcType=VARCHAR},
+      Goods_Season = #{goodsSeason,jdbcType=INTEGER},
+      Goods_Blossom = #{goodsBlossom,jdbcType=VARCHAR},
+      Goods_Fruit = #{goodsFruit,jdbcType=VARCHAR},
+      Goods_Mature = #{goodsMature,jdbcType=VARCHAR},
+      Goods_Expiration = #{goodsExpiration,jdbcType=VARCHAR},
+      Goods_Reserve_1 = #{goodsReserve1,jdbcType=VARCHAR}
+    where Goods_PK = #{goodsPk,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserCollectionMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UserCollection" >
+    <id column="Collect_PK" property="collectPk" jdbcType="INTEGER" />
+    <result column="User_PK" property="userPk" jdbcType="INTEGER" />
+    <result column="Goods_PK" property="goodsPk" jdbcType="INTEGER" />
+    <result column="Collect_Time" property="collectTime" jdbcType="TIMESTAMP" />
+    <result column="Collect_Reserve_1" property="collectReserve1" jdbcType="VARCHAR" />
+    <result column="Collect_Reserve_2" property="collectReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Collect_PK, User_PK, Goods_PK, Collect_Time, Collect_Reserve_1, Collect_Reserve_2, 
+    Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_collection
+    where Collect_PK = #{collectPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_collection
+    where Collect_PK = #{collectPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UserCollection" >
+    insert into user_collection (Collect_PK, User_PK, Goods_PK, 
+      Collect_Time, Collect_Reserve_1, Collect_Reserve_2, 
+      Remark)
+    values (#{collectPk,jdbcType=INTEGER}, #{userPk,jdbcType=INTEGER}, #{goodsPk,jdbcType=INTEGER}, 
+      #{collectTime,jdbcType=TIMESTAMP}, #{collectReserve1,jdbcType=VARCHAR}, #{collectReserve2,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UserCollection" >
+    insert into user_collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="collectPk != null" >
+        Collect_PK,
+      </if>
+      <if test="userPk != null" >
+        User_PK,
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK,
+      </if>
+      <if test="collectTime != null" >
+        Collect_Time,
+      </if>
+      <if test="collectReserve1 != null" >
+        Collect_Reserve_1,
+      </if>
+      <if test="collectReserve2 != null" >
+        Collect_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="collectPk != null" >
+        #{collectPk,jdbcType=INTEGER},
+      </if>
+      <if test="userPk != null" >
+        #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null" >
+        #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectReserve1 != null" >
+        #{collectReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="collectReserve2 != null" >
+        #{collectReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UserCollection" >
+    update user_collection
+    <set >
+      <if test="userPk != null" >
+        User_PK = #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null" >
+        Collect_Time = #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectReserve1 != null" >
+        Collect_Reserve_1 = #{collectReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="collectReserve2 != null" >
+        Collect_Reserve_2 = #{collectReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Collect_PK = #{collectPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UserCollection" >
+    update user_collection
+    set User_PK = #{userPk,jdbcType=INTEGER},
+      Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      Collect_Time = #{collectTime,jdbcType=TIMESTAMP},
+      Collect_Reserve_1 = #{collectReserve1,jdbcType=VARCHAR},
+      Collect_Reserve_2 = #{collectReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Collect_PK = #{collectPk,jdbcType=INTEGER}
+  </update>
+</mapper>

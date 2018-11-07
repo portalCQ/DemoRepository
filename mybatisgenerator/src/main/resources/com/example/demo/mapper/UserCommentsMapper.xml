@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserCommentsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UserComments" >
+    <id column="Comm_PK" property="commPk" jdbcType="INTEGER" />
+    <result column="User_PK" property="userPk" jdbcType="INTEGER" />
+    <result column="Goods_PK" property="goodsPk" jdbcType="INTEGER" />
+    <result column="Comm_Rank" property="commRank" jdbcType="INTEGER" />
+    <result column="Comm_Time" property="commTime" jdbcType="TIMESTAMP" />
+    <result column="Comm_Reserve_1" property="commReserve1" jdbcType="VARCHAR" />
+    <result column="Comm_Reserve_2" property="commReserve2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.entity.UserComments" extends="BaseResultMap" >
+    <result column="Comm_Text" property="commText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Comm_PK, User_PK, Goods_PK, Comm_Rank, Comm_Time, Comm_Reserve_1, Comm_Reserve_2, 
+    Remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    Comm_Text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_comments
+    where Comm_PK = #{commPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_comments
+    where Comm_PK = #{commPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UserComments" >
+    insert into user_comments (Comm_PK, User_PK, Goods_PK, 
+      Comm_Rank, Comm_Time, Comm_Reserve_1, 
+      Comm_Reserve_2, Remark, Comm_Text
+      )
+    values (#{commPk,jdbcType=INTEGER}, #{userPk,jdbcType=INTEGER}, #{goodsPk,jdbcType=INTEGER}, 
+      #{commRank,jdbcType=INTEGER}, #{commTime,jdbcType=TIMESTAMP}, #{commReserve1,jdbcType=VARCHAR}, 
+      #{commReserve2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{commText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UserComments" >
+    insert into user_comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commPk != null" >
+        Comm_PK,
+      </if>
+      <if test="userPk != null" >
+        User_PK,
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK,
+      </if>
+      <if test="commRank != null" >
+        Comm_Rank,
+      </if>
+      <if test="commTime != null" >
+        Comm_Time,
+      </if>
+      <if test="commReserve1 != null" >
+        Comm_Reserve_1,
+      </if>
+      <if test="commReserve2 != null" >
+        Comm_Reserve_2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="commText != null" >
+        Comm_Text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commPk != null" >
+        #{commPk,jdbcType=INTEGER},
+      </if>
+      <if test="userPk != null" >
+        #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="commRank != null" >
+        #{commRank,jdbcType=INTEGER},
+      </if>
+      <if test="commTime != null" >
+        #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commReserve1 != null" >
+        #{commReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="commReserve2 != null" >
+        #{commReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="commText != null" >
+        #{commText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UserComments" >
+    update user_comments
+    <set >
+      <if test="userPk != null" >
+        User_PK = #{userPk,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPk != null" >
+        Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      </if>
+      <if test="commRank != null" >
+        Comm_Rank = #{commRank,jdbcType=INTEGER},
+      </if>
+      <if test="commTime != null" >
+        Comm_Time = #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commReserve1 != null" >
+        Comm_Reserve_1 = #{commReserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="commReserve2 != null" >
+        Comm_Reserve_2 = #{commReserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="commText != null" >
+        Comm_Text = #{commText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Comm_PK = #{commPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.entity.UserComments" >
+    update user_comments
+    set User_PK = #{userPk,jdbcType=INTEGER},
+      Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      Comm_Rank = #{commRank,jdbcType=INTEGER},
+      Comm_Time = #{commTime,jdbcType=TIMESTAMP},
+      Comm_Reserve_1 = #{commReserve1,jdbcType=VARCHAR},
+      Comm_Reserve_2 = #{commReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Comm_Text = #{commText,jdbcType=LONGVARCHAR}
+    where Comm_PK = #{commPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UserComments" >
+    update user_comments
+    set User_PK = #{userPk,jdbcType=INTEGER},
+      Goods_PK = #{goodsPk,jdbcType=INTEGER},
+      Comm_Rank = #{commRank,jdbcType=INTEGER},
+      Comm_Time = #{commTime,jdbcType=TIMESTAMP},
+      Comm_Reserve_1 = #{commReserve1,jdbcType=VARCHAR},
+      Comm_Reserve_2 = #{commReserve2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Comm_PK = #{commPk,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UnionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.UnionInfo" >
+    <id column="Union_PK" property="unionPk" jdbcType="INTEGER" />
+    <result column="Union_Name" property="unionName" jdbcType="VARCHAR" />
+    <result column="Union_Master" property="unionMaster" jdbcType="VARCHAR" />
+    <result column="Union_License" property="unionLicense" jdbcType="VARCHAR" />
+    <result column="Union_Address" property="unionAddress" jdbcType="VARCHAR" />
+    <result column="Union_Establish" property="unionEstablish" jdbcType="DATE" />
+    <result column="Union_Asset" property="unionAsset" jdbcType="INTEGER" />
+    <result column="Union_Tele" property="unionTele" jdbcType="VARCHAR" />
+    <result column="Union_Cell" property="unionCell" jdbcType="VARCHAR" />
+    <result column="Union_Email" property="unionEmail" jdbcType="VARCHAR" />
+    <result column="Union_Mark" property="unionMark" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Union_PK, Union_Name, Union_Master, Union_License, Union_Address, Union_Establish, 
+    Union_Asset, Union_Tele, Union_Cell, Union_Email, Union_Mark, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from union_info
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from union_info
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.UnionInfo" >
+    insert into union_info (Union_PK, Union_Name, Union_Master, 
+      Union_License, Union_Address, Union_Establish, 
+      Union_Asset, Union_Tele, Union_Cell, 
+      Union_Email, Union_Mark, Remark
+      )
+    values (#{unionPk,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, #{unionMaster,jdbcType=VARCHAR}, 
+      #{unionLicense,jdbcType=VARCHAR}, #{unionAddress,jdbcType=VARCHAR}, #{unionEstablish,jdbcType=DATE}, 
+      #{unionAsset,jdbcType=INTEGER}, #{unionTele,jdbcType=VARCHAR}, #{unionCell,jdbcType=VARCHAR}, 
+      #{unionEmail,jdbcType=VARCHAR}, #{unionMark,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.UnionInfo" >
+    insert into union_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionPk != null" >
+        Union_PK,
+      </if>
+      <if test="unionName != null" >
+        Union_Name,
+      </if>
+      <if test="unionMaster != null" >
+        Union_Master,
+      </if>
+      <if test="unionLicense != null" >
+        Union_License,
+      </if>
+      <if test="unionAddress != null" >
+        Union_Address,
+      </if>
+      <if test="unionEstablish != null" >
+        Union_Establish,
+      </if>
+      <if test="unionAsset != null" >
+        Union_Asset,
+      </if>
+      <if test="unionTele != null" >
+        Union_Tele,
+      </if>
+      <if test="unionCell != null" >
+        Union_Cell,
+      </if>
+      <if test="unionEmail != null" >
+        Union_Email,
+      </if>
+      <if test="unionMark != null" >
+        Union_Mark,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionPk != null" >
+        #{unionPk,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionMaster != null" >
+        #{unionMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="unionLicense != null" >
+        #{unionLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="unionAddress != null" >
+        #{unionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unionEstablish != null" >
+        #{unionEstablish,jdbcType=DATE},
+      </if>
+      <if test="unionAsset != null" >
+        #{unionAsset,jdbcType=INTEGER},
+      </if>
+      <if test="unionTele != null" >
+        #{unionTele,jdbcType=VARCHAR},
+      </if>
+      <if test="unionCell != null" >
+        #{unionCell,jdbcType=VARCHAR},
+      </if>
+      <if test="unionEmail != null" >
+        #{unionEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="unionMark != null" >
+        #{unionMark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.UnionInfo" >
+    update union_info
+    <set >
+      <if test="unionName != null" >
+        Union_Name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionMaster != null" >
+        Union_Master = #{unionMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="unionLicense != null" >
+        Union_License = #{unionLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="unionAddress != null" >
+        Union_Address = #{unionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unionEstablish != null" >
+        Union_Establish = #{unionEstablish,jdbcType=DATE},
+      </if>
+      <if test="unionAsset != null" >
+        Union_Asset = #{unionAsset,jdbcType=INTEGER},
+      </if>
+      <if test="unionTele != null" >
+        Union_Tele = #{unionTele,jdbcType=VARCHAR},
+      </if>
+      <if test="unionCell != null" >
+        Union_Cell = #{unionCell,jdbcType=VARCHAR},
+      </if>
+      <if test="unionEmail != null" >
+        Union_Email = #{unionEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="unionMark != null" >
+        Union_Mark = #{unionMark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.UnionInfo" >
+    update union_info
+    set Union_Name = #{unionName,jdbcType=VARCHAR},
+      Union_Master = #{unionMaster,jdbcType=VARCHAR},
+      Union_License = #{unionLicense,jdbcType=VARCHAR},
+      Union_Address = #{unionAddress,jdbcType=VARCHAR},
+      Union_Establish = #{unionEstablish,jdbcType=DATE},
+      Union_Asset = #{unionAsset,jdbcType=INTEGER},
+      Union_Tele = #{unionTele,jdbcType=VARCHAR},
+      Union_Cell = #{unionCell,jdbcType=VARCHAR},
+      Union_Email = #{unionEmail,jdbcType=VARCHAR},
+      Union_Mark = #{unionMark,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Union_PK = #{unionPk,jdbcType=INTEGER}
+  </update>
+</mapper>
